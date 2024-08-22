@@ -1,11 +1,11 @@
 import React,{useState,useRef,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const AddNewRecipe = () => {
-  const [recipeName,setRecipeName]=useState("");
-  const [ingredients,setIngredients]=useState("");  
-  const [instruction,setInstruction]=useState("");
-  const [category,setCategory]=useState("");
+const AddNewRecipe = ({RecipeName,Ingredients,Instructions,Category,Edit,RecipeKey}) => {
+  const [recipeName,setRecipeName]=useState(RecipeName);
+  const [ingredients,setIngredients]=useState(Ingredients);  
+  const [instruction,setInstruction]=useState(Instructions);
+  const [category,setCategory]=useState(Category);
   const [Data_Store,setDataStore]=useState({});
   const selectRef=useRef();
   const navigate=useNavigate();
@@ -36,11 +36,13 @@ setRecipeName(e.value);
       const newData={...Data_Store,RecipeName:recipeName,Ingredients:ingredients,Instructions:instruction,Category:category};
       setDataStore(newData);
       const LocalDataStore=JSON.stringify(newData);
-      localStorage.setItem("Recipe"+(numberOfData+1),LocalDataStore);
-    setRecipeName("");
-    setIngredients("");
-    setInstruction("");
-    handleCategory("");
+      localStorage.setItem(!Edit?"Recipe"+(numberOfData+1):RecipeKey,LocalDataStore);
+      if(!Edit){
+        setRecipeName("");
+        setIngredients("");
+        setInstruction("");
+        setCategory("");
+      }
     }
 
   }
@@ -51,13 +53,13 @@ setRecipeName(e.value);
       <div><label htmlFor="Ingredients">Ingredients:</label><textarea name="ingredients" id="ingredients" className='border-4' rows={2} value={ingredients} onChange={(e)=>handleIngredient(e.target)} required></textarea></div>
       <div><label htmlFor="Instructions">Instructions:</label><textarea name="instructions" id="instructions" className='border-4'  rows={2} value={instruction} onChange={(e)=>handleInstruction(e.target)} required></textarea></div>
       <div><label htmlFor="Category"></label><select name="category" id="category" ref={selectRef} value={category} onChange={(e)=>handleCategory(e.target)}>
-        <option value="Other">Others</option>
-        <option value="BreakFast">BreakFast</option>
+        <option value="Others">Others</option>
+        <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
         <option value="Dinner">Dinner</option>
       </select>
       </div>
-      <button type='button' className="border-4" onClick={StoreData}>Submit</button>
+      <button type='button' className="border-4" onClick={StoreData}>{!Edit?"Submit":"Update"}</button>
       </form>  
     </div>
   )
