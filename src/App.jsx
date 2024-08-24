@@ -6,7 +6,7 @@ import EditRecipe from "./Page/EditRecipe.jsx"
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col items-center min-h-screen">
     <nav className="m-2 font-bold text-2xl">
     <div><Link to="/">Home</Link></div>
     </nav>
@@ -17,7 +17,7 @@ function App() {
       <Route path="/EditRecipe/:recipe" element={<EditRecipe/>}/>
       <Route/>
     </Routes>
-    </>
+    </div>
   )
 }
 

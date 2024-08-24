@@ -4,6 +4,7 @@ const Home = () => {
   const [Recipes,setRecipes]=useState([]);
   const [filter,setFilter]=useState("All");
   const filteredRecipes = filter === "All" ? Recipes : Recipes.filter((recipe) => recipe.Category === filter);
+  let count=1;
 
   useEffect(()=>{
     if(localStorage.length>0){
@@ -17,7 +18,7 @@ const Home = () => {
     }
   },[])
   const handleFilter=(e)=>{
-    setFilter(e.value);
+    setFilter(e.target.value);
   }
   const deleteAllRecipes=()=>{
     localStorage.clear();
@@ -28,27 +29,28 @@ const Home = () => {
     localStorage.removeItem(RecipeKey);
   }
   return (
-    <div className='m-2'>
-    <div>
-    <Link to="/AddNewRecipe" className='border-2 border-solid border-black rounded-lg px-2 bg-black text-white '>AddNewRecipe</Link>      <button type='button' onClick={deleteAllRecipes} className='border-2 border-solid border-gray-700 rounded-lg px-2 bg-red-600 text-white mb-1 mx-2'>Delete All Recipes</button>
-    <span className='my-2 block'>RecipeLists</span>
+    <div className='m-2 w-96 border-4 bg-gray-200 shadow-xl rounded-lg'>
+    <div className='p-3 flex flex-col gap-y-3'>
+      <div className='flex justify-between'>
+      <Link to="/AddNewRecipe" className='border-2 border-solid border-black px-2 py-1 rounded-lg bg-black text-white text-lg shadow-lg'>AddNewRecipe</Link><button type='button' onClick={deleteAllRecipes} className='border-2 border-solid px-2 py-1 border-red-600 rounded-lg bg-red-600 text-white text-lg shadow-lg'>Delete All Recipes</button>
+      </div>
+      <span className='my-2 block font-semibold text-center text-lg'>RecipeLists</span>
        {localStorage.length>0?
-      <>
-      <label htmlFor="filter">Category</label>
-      <select className=' rounded-lg border-2 border-solid border-black m-2 text-center' name="filter" id="fitler-recipe" onChange={(e)=>handleFilter(e.target)}>
+      <div className='flex justify-between'>
+
+      <label htmlFor="filter" className='font-semibold px-2'>Category</label>
+      <select className=' rounded-lg border-2 border-solid border-gray-100 shadow-md bg-gray-200 text-center text-base mx-2' name="filter" id="filter-recipe" onChange={(e)=>handleFilter(e)}>
       <option value="All">All</option>
       <option value="Breakfast">Breakfast</option>
       <option value="Lunch">Lunch</option>
       <option value="Dinner">Dinner</option>
       <option value="Others">Others</option>
       </select>
-      </>
+      </div>
       :""} 
-      
-      <ol className="list-decimal list-inside">
-      {Recipes.map((element,i)=> (filter==="All"||filter===element.Category)?(<li key={i}><Link to={"/ViewRecipe/"+element.key} className='font-bold hover:bg-green-600 text-black px-2 py-0.5 rounded-md'>{element.RecipeName}</Link> <button type='button' onClick={()=>deleteRecipe(element.key,i)} className='border-2 border-solid border-gray-700 rounded-lg px-2 bg-red-600 text-white mb-1 mx-2'>Delete</button></li>):"")}
-      {(filteredRecipes.length<=0)?(<span>No result found</span>):""}
-      </ol>
+            {(filteredRecipes.length>0)?(<ol className="list-decimal list-inside">
+      {filteredRecipes.map((element,i)=><li key={i} className='flex justify-between'><Link to={"/ViewRecipe/"+element.key} className='font-bold hover:bg-green-600 text-black px-2 py-0.5 rounded-md'>{(count++)+". "+element.RecipeName}</Link> <button type='button' onClick={()=>deleteRecipe(element.key,i)} className='border-2 border-solid border-red-600 rounded-lg px-2 bg-red-600 text-white mb-1 mx-2 shadow-sm'>Delete</button></li>)}
+      </ol>):(<span className='block'>No result found</span>)}
       </div>
     </div>
   )
