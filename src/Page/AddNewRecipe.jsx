@@ -41,7 +41,7 @@ setRecipeName(e.value);
         setRecipeName("");
         setIngredients("");
         setInstruction("");
-        setCategory("");
+        setCategory("Others");
       }
     }
 

@@ -12,7 +12,7 @@ function App() {
     </nav>
       <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/AddNewRecipe" element={<AddNewRecipe RecipeName="" Ingredients="" Instructions="" Category="" Edit={false} RecipeKey={""}/>}/>
+      <Route path="/AddNewRecipe" element={<AddNewRecipe RecipeName="" Ingredients="" Instructions="" Category="Others" Edit={false} RecipeKey={""}/>}/>
       <Route path="/ViewRecipe/:recipe" element={<ViewRecipe/>}/>
       <Route path="/EditRecipe/:recipe" element={<EditRecipe/>}/>
       <Route/>
