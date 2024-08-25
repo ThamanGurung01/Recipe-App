@@ -29,10 +29,11 @@ const Home = () => {
     localStorage.removeItem(RecipeKey);
   }
   return (
-    <div className='m-2  border-4 bg-gray-200 shadow-xl rounded-lg lg:w-80 sm:w-64 md:w-72 xl:w-96'>
+    <div className='m-2  border-4 bg-gray-200 shadow-xl w-64 rounded-lg md:w-72 xl:w-96'>
     <div className='p-2 flex flex-col gap-y-3'>
-      <div className='flex justify-between'>
-      <Link to="/AddNewRecipe" className='border-2 border-solid border-black px-1.5 py-0.5 rounded-lg bg-black text-white shadow-lg'>Add Recipes</Link><button type='button' onClick={deleteAllRecipes} className='border-2 border-solid px-1 py-0.5 border-red-600 rounded-lg bg-red-600 text-white shadow-lg'>Delete Recipes</button>
+      <div className='flex justify-center'>
+      <Link to="/AddNewRecipe" className='border-2 border-solid border-black px-1.5 py-0.5 rounded-lg bg-black text-white shadow-lg'>Add Recipes</Link>
+      {localStorage.length>0?(<button type='button' onClick={deleteAllRecipes} className='border-2 border-solid px-1 py-0.5 ml-4 border-red-600 rounded-lg bg-red-600 text-white shadow-lg'>Delete Recipes</button>):""}
       </div>
       <span className='my-2 block font-semibold text-center text-lg'>RecipeLists</span>
        {localStorage.length>0?
@@ -50,7 +51,7 @@ const Home = () => {
       :""} 
             {(filteredRecipes.length>0)?(<ol className="list-decimal list-inside">
       {filteredRecipes.map((element,i)=><li key={i} className='flex justify-between'><Link to={"/ViewRecipe/"+element.key} className='font-bold hover:bg-green-600 text-black px-2 py-0.5 rounded-md'>{(count++)+". "+element.RecipeName}</Link> <button type='button' onClick={()=>deleteRecipe(element.key,i)} className='border-2 border-solid border-red-600 rounded-lg px-2 bg-red-600 text-white mb-1 mx-2 shadow-sm'>Delete</button></li>)}
-      </ol>):(<span className='block'>No result found</span>)}
+      </ol>):(<span className='block text-center'>No result found</span>)}
       </div>
     </div>
   )
