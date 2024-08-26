@@ -32,7 +32,7 @@ const Home = () => {
     <div className='m-2  border-4 bg-gray-200 shadow-xl w-64 rounded-lg md:w-72 xl:w-96'>
     <div className='p-2 flex flex-col gap-y-3'>
       <div className='flex justify-center'>
-      <Link to="/AddNewRecipe" className='border-2 border-solid border-black px-1.5 py-0.5 rounded-lg bg-black text-white shadow-lg'>Add Recipes</Link>
+      <Link to="/AddNewRecipe" className='border-2 border-solid border-black px-1.5 text-center py-0.5 rounded-lg bg-black text-white shadow-lg'>Add Recipes</Link>
       {localStorage.length>0?(<button type='button' onClick={deleteAllRecipes} className='border-2 border-solid px-1 py-0.5 ml-4 border-red-600 rounded-lg bg-red-600 text-white shadow-lg'>Delete Recipes</button>):""}
       </div>
       <span className='my-2 block font-semibold text-center text-lg'>RecipeLists</span>
