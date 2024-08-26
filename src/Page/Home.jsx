@@ -30,7 +30,7 @@ const Home = () => {
   }
   return (
     <div className='m-2  border-4 bg-gray-200 shadow-xl w-64 rounded-lg md:w-72 xl:w-96'>
-    <div className='p-2 flex flex-col gap-y-3'>
+    <div className='p-2 flex flex-col gap-y-3 mt-2'>
       <div className='flex justify-center'>
       <Link to="/AddNewRecipe" className='btn-primary hover:btn-add-hover'>Add Recipes</Link>
       {localStorage.length>0?(<button type='button' onClick={deleteAllRecipes} className='ml-4 btn-primary hover:btn-delete-hover'>Delete Recipes</button>):""}
