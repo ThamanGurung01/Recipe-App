@@ -12,3 +12,18 @@
 .inputRecipeNameM{
   margin-left: 3.1rem;
 }
+
+@layer components{
+  .btn-primary{
+    @apply border-2 border-solid border-black px-1.5 text-center py-0.5 rounded-lg bg-black text-white shadow-lg;
+  }
+  .btn-add-hover{
+    @apply border-2 border-solid border-green-400 px-1.5 text-center py-0.5 rounded-lg bg-green-500 text-white shadow-lg;
+  }
+  .btn-delete-hover{
+    @apply border-2 border-solid px-1.5 py-0.5 border-red-600 rounded-lg bg-red-600 text-white shadow-lg
+  }
+  .input-hover{
+    @apply bg-white border-solid border-gray-300 shadow-lg
+  }
+}
