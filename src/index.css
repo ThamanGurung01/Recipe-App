@@ -26,4 +26,7 @@
   .input-hover{
     @apply bg-white border-solid border-gray-300 shadow-lg
   }
+  .truncate{
+    @apply text-ellipsis overflow-hidden whitespace-nowrap
+  }
 }
